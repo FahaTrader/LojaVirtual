@@ -14,6 +14,8 @@ function App() {
   const [showSidebarCart, setShowSidebarCart] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [showconfirmationMessage, setConfirmationMessage] = useState('')
+  const [searchQuery, setSearchQuery] = useState('');
 
   const addToCartTotal = (value) => setCartTotal(cartTotal + value);
 
@@ -27,6 +29,7 @@ function App() {
     if(selectedProducts.includes(productToAdd)) return;
     setSelectedProducts(selectedProducts.concat(productToAdd));
     setCartTotal(cartTotal + productToAdd.price);
+    showConfirmationMessage('Item adicionado com sucesso');
   }
 
   const removeProductFromCart = (id) => {
@@ -34,10 +37,17 @@ function App() {
     setSelectedProducts(newSelectedProduct);
   }
 
+  const showConfirmationMessage = (message) => {
+    setConfirmationMessage(message);
+    setTimeout(() => {
+      setConfirmationMessage('');
+    }, 3000);
+  }
+
   return (
     <Router>
       <div className="App">
-        <Navbar selectedProducts={selectedProducts} setShowSidebarCart={setShowSidebarCart} />
+        <Navbar selectedProducts={selectedProducts} setShowSidebarCart={setShowSidebarCart} setSearchQuery={setSearchQuery} />
         <SidebarCart
           addToCartTotal={addToCartTotal}
           removeProductFromCart={removeProductFromCart}
@@ -47,6 +57,7 @@ function App() {
           showSidebarCart={showSidebarCart} 
         />
         <main>
+          {showconfirmationMessage && <div className="confirmation-message">{showconfirmationMessage}</div>}
           <Routes>
             <Route path="/" element={<HomePage 
               addToCartTotal={addToCartTotal}
@@ -60,7 +71,8 @@ function App() {
             />
             <Route path="/products" element={<ProductsPage
               addProductToCart={addProductToCart}
-              products={products} />} 
+              products={products} 
+              searchQuery={searchQuery} />} 
             />
             <Route path="/checkout" element={<CheckoutPage
               addToCartTotal={addToCartTotal}

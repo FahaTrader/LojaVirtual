@@ -6,7 +6,7 @@
       "desc": "",
       "image": "/images/products/product-4.png",
       "rating": 4,
-      "price": 149.50
+      "price": 149
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "desc": "Controle Dualsense Sony - Modelo: DualSense - Especificações Físico: - Cor: Branco - Hardware Compatível: PlayStation5 - Dimensões: 160 x 66 x 106 mm",
       "image": "/images/products/product-6.png",
       "rating": 5,
-      "price": 379.49
+      "price": 379
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "desc": "",
       "image": "/images/products/product-7.png",
       "rating": 3,
-      "price": 415.90
+      "price": 415
     },
     {
       "id": 5,
@@ -77,7 +77,7 @@
       "name": "Racingwheel GT480 Ferrari",
       "image": "/images/products/product-13.png",
       "rating": 5,
-      "price": 1945.72
+      "price": 1945
     },
     {
       "id": 11,

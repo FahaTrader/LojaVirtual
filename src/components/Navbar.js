@@ -3,8 +3,12 @@ import { faBars, faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ setShowSidebarCart, selectedProducts }) {
+export default function Navbar({ setShowSidebarCart, selectedProducts, setSearchQuery  }) {
   const [show, setShow] = useState(false);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
   return (
     <div className="nav">
@@ -21,7 +25,7 @@ export default function Navbar({ setShowSidebarCart, selectedProducts }) {
         </nav>
         <div className="navs-icon-container">
           <div className="search-input-container">
-            <input type="search" placeholder="Procurar"/>
+            <input type="search" placeholder="Procurar" onChange={handleSearchChange} />
             <FontAwesomeIcon icon={faSearch} />
           </div>
           <button className="shopping-cart" onClick={() => setShowSidebarCart(true)}>
