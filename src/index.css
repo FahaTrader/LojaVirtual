@@ -722,5 +722,6 @@ hr{
     align-items: center;
     justify-content: center;
     margin-inline: auto;
+    place-content: center;
   }
 }
