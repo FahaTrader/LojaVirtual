@@ -6,7 +6,7 @@
       "desc": "",
       "image": "/images/products/product-4.png",
       "rating": 4,
-      "price": 2000
+      "price": 149.50
     },
     {
       "id": 2,
@@ -30,7 +30,7 @@
       "desc": "",
       "image": "/images/products/product-7.png",
       "rating": 3,
-      "price": 17500
+      "price": 415.90
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "desc": "",
       "image": "/images/products/product-8.png",
       "rating": 5,
-      "price": 115000
+      "price": 4800
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "desc": "",
       "image": "/images/products/product-9.png",
       "rating": 5,
-      "price": 110000
+      "price": 4000
     },
     {
       "id": 7,
@@ -54,7 +54,7 @@
       "desc": "",
       "image": "/images/products/product-10.png",
       "rating": 4,
-      "price": 65000
+      "price": 3000
     },
     {
       "id": 8,
@@ -62,7 +62,7 @@
       "desc": "",
       "image": "/images/products/product-11.png",
       "rating": 4,
-      "price": 80500
+      "price": 3980
     },
     {
       "id": 9,
@@ -70,14 +70,14 @@
       "desc": "",
       "image": "/images/products/product-12.png",
       "rating": 5,
-      "price": 45000
+      "price": 3500
     },
     {
       "id": 10,
       "name": "Racingwheel GT480 Ferrari",
       "image": "/images/products/product-13.png",
       "rating": 5,
-      "price": 14000
+      "price": 1945.72
     },
     {
       "id": 11,
@@ -85,7 +85,7 @@
       "desc": "",
       "image": "/images/products/product-14.png",
       "rating": 5,
-      "price": 54000
+      "price": 3400
     },
     {
       "id": 12,
@@ -93,7 +93,7 @@
       "desc": "",
       "image": "/images/products/product-15.png",
       "rating": 5,
-      "price": 450000
+      "price": 3500
     }
   ]
 }

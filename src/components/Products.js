@@ -9,7 +9,7 @@ export default function Products({ id, image, name, rate, price, addProductToCar
       <img src={image} alt={name} />
       <p className='name'>{name}</p>
       <p className='rate'>&#9733; &#9733; &#9733; &#9733; &#9733;</p>
-      <p className='price'>{price} <span>R$</span></p>
+      <p className='price'><span>R$</span> {price.toFixed(2)}</p>
 
       <div className='buttons'>
         <Link to={`/products/${id}`} className='btn-icon'>
