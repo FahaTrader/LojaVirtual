@@ -721,5 +721,6 @@ hr{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-inline: auto;
   }
 }
