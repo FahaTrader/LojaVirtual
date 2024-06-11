@@ -32,8 +32,9 @@ export default function SidebarCart({ setShowSidebarCart,
         <div className='total-container'>
           <b>Total: </b> R$ {cartTotal}
         </div>
-        <Link to="/cart/checkout" className='btn-icon'>
-          <span>Finalizar Compra</span>
+        
+        <Link to="/checkout" className='btn-icon' onClick={() => setShowSidebarCart(false)}>
+          Finalizar Compra
           <FontAwesomeIcon icon={faMoneyBill} />
         </Link>
       </>)}

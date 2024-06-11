@@ -5,6 +5,9 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import SidebarCart from "./components/SidebarCart";
+import ConfirmationPage from "./pages/ConfirmationPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -59,6 +62,20 @@ function App() {
               addProductToCart={addProductToCart}
               products={products} />} 
             />
+            <Route path="/checkout" element={<CheckoutPage
+              addToCartTotal={addToCartTotal}
+              removeProductFromCart={removeProductFromCart}
+              selectedProducts={selectedProducts}
+              setShowSidebarCart={setShowSidebarCart}
+              showSidebarCart={showSidebarCart}
+              products={products}
+              cartTotal={cartTotal}
+            />}
+            />
+            <Route path="/confirmation" element={<ConfirmationPage />} />
+            <Route path="/products/:id" element={<ProductDetailsPage
+              addProductToCart={addProductToCart}
+              products={products} />} />
           </Routes>
         </main>
         <Footer />

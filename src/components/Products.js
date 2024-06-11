@@ -12,9 +12,8 @@ export default function Products({ id, image, name, rate, price, addProductToCar
       <p className='price'>{price} <span>R$</span></p>
 
       <div className='buttons'>
-        <Link to="/products/123/checkout" className='btn-icon'>
-          <span>Comprar agora</span>
-          <FontAwesomeIcon icon={faMoneyBill} />
+        <Link to={`/products/${id}`} className='btn-icon'>
+          <span>Detalhes</span>
         </Link>
         <button className='btn-icon add-to-cart-btn' onClick={() => addProductToCart(id)}>
           <span>Adicionar ao Carrinho</span>
