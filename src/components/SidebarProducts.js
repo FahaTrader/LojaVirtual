@@ -6,9 +6,6 @@ export default function SidebarProducts({ id, image, name, rate, price, removePr
   const [quantity, setQuantity] = useState(1);
   const [priceSum, setPriceSum] = useState(price);
 
-  const changeCartTotal = () => {
-    
-  }
   
   return (
     <div className='sidebar-product'>
