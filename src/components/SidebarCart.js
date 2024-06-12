@@ -1,4 +1,4 @@
-import { faMoneyBill, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBagShopping, faMoneyBill, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import SidebarProducts from './SidebarProducts'
@@ -28,7 +28,12 @@ export default function SidebarCart({ setShowSidebarCart,
       />)}
       </div>
 
-      {cartTotal === 0 ? (<i>Seu carringo está vazio</i>) : (<>
+      {cartTotal === 0 ? (
+        <div className='cart-none'>
+          <FontAwesomeIcon icon={faBagShopping} className='icon'/>
+          <i>Seu carrinho está vazio</i>
+        </div>
+        ) : (<>
         <div className='total-container'>
           <b>Total: </b> R$ {cartTotal}
         </div>

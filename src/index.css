@@ -5,9 +5,9 @@
 }
 
 :root{
-  --primary-color: #f80;
+  --primary-color: rgb(0, 238, 255);
   --secondary-color: #00498d;
-  --dark-primary-color: #e07800;
+  --dark-primary-color: #008ee0;
   --dark-secondary-color: #00315f;
   --light-color: #e9e9e9;
   --dark-color: #2c2c2c;
@@ -49,7 +49,7 @@ button {
 }
 
 .logo{
-  color: var(--primary-color);
+  color: var(--dark-primary-color);
 
 }
 
@@ -139,7 +139,7 @@ header .inner-content{
 }
 
 header .left-side{
-  color: #FFF;
+  color: #000;
 }
 
 header .left-side h2{
@@ -149,6 +149,7 @@ header .left-side h2{
 header .left-side p{
   padding-top: 1rem;
   padding-bottom: 2rem;
+  font-weight: 500;
 }
 
 .see-more-btn{
@@ -282,10 +283,11 @@ header .right-side img{
   gap: 0.25rem;
   padding: 0.8rem;
   background-color: var(--primary-color);
-  color: #FFF;
+  color: #000;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s;
+  font-weight: bold;
 }
 
 .btn-icon:hover{
@@ -294,6 +296,7 @@ header .right-side img{
 
 .add-to-cart-btn{
   background-color: var(--secondary-color);
+  color: #FFF;
 }
 
 .add-to-cart-btn:hover{
@@ -572,6 +575,24 @@ hr{
   display: block;
 }
 
+.cart-none{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.cart-none .icon{
+  font-size: 25px;
+  margin-bottom: 1rem;
+  margin-top: 10rem;
+}
+
+.cart-none i{
+  font-size: 20px;
+}
+
 /*----- Details Section -----*/
 .container-details{
   display: flex;
@@ -708,6 +729,8 @@ hr{
   display: grid;
   grid-template-columns: repeat(auto-fill, 280px);
   gap: 16px;
+  place-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .product {
