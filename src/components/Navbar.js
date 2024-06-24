@@ -20,7 +20,6 @@ export default function Navbar({ setShowSidebarCart, selectedProducts, setSearch
             <li><Link to="/products">Produtos</Link></li>
             <li><Link to="/about">Sobre</Link></li>
             <li><Link to="/contact">Contatos</Link></li>
-            <li><Link to="/account">Conta</Link></li>
           </ul>
         </nav>
         <div className="navs-icon-container">

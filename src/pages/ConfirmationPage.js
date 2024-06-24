@@ -3,8 +3,8 @@ import React from 'react';
 function ConfirmationPage() {
   return (
     <div>
-      <h1>Order Confirmed!</h1>
-      <p>Thank you for your purchase.</p>
+      <h1>Pedido Confirmado!!</h1>
+      <p>Obrigado pela preferência e volte sempre.</p>
     </div>
   );
 }

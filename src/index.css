@@ -753,7 +753,7 @@ hr{
 }
 
 .frete-calculator input {
-  padding: 8px;
+  padding: 8px 10px;
   margin-right: 10px;
   border: none;
   outline: none;
@@ -772,4 +772,8 @@ hr{
   margin-top: 10px;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.img-review{
+  width: 20%;
 }

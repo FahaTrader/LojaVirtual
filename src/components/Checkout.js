@@ -1,9 +1,8 @@
-// src/pages/CheckoutPage.js
 import React from 'react';
-import CheckoutForm from '../components/CheckoutForm';
+import CheckoutForm from './CheckoutForm';
 import { Container, Title } from '../styles';
 
-const CheckoutPage = () => {
+const Checkout = () => {
   return (
     <Container>
       <Title>Checkout</Title>
@@ -12,4 +11,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+export default Checkout;

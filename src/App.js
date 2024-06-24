@@ -8,6 +8,7 @@ import SidebarCart from "./components/SidebarCart";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import ReviewPage from "./pages/ReviewPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -43,6 +44,13 @@ function App() {
       setConfirmationMessage('');
     }, 3000);
   }
+
+  const handleFinalizePurchase = () => {
+    // Aqui você pode adicionar a lógica de finalização da compra, como enviar os dados para o servidor
+    console.log('Compra finalizada!');
+    setSelectedProducts([]);
+    setCartTotal(0);
+  };
 
   return (
     <Router>
@@ -83,6 +91,14 @@ function App() {
               products={products}
               cartTotal={cartTotal}
             />}
+            />
+            <Route
+              path="/review"
+              element={<ReviewPage
+                selectedProducts={selectedProducts}
+                cartTotal={cartTotal}
+                handleFinalizePurchase={handleFinalizePurchase}
+              />}
             />
             <Route path="/confirmation" element={<ConfirmationPage />} />
             <Route path="/products/:id" element={<ProductDetailsPage
