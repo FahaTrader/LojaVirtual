@@ -9,6 +9,8 @@ import ConfirmationPage from "./pages/ConfirmationPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
+import LoginPage from "./pages/LoginPage";
+import axios from "axios";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -45,12 +47,25 @@ function App() {
     }, 3000);
   }
 
-  const handleFinalizePurchase = () => {
-    // Aqui você pode adicionar a lógica de finalização da compra, como enviar os dados para o servidor
-    console.log('Compra finalizada!');
-    setSelectedProducts([]);
-    setCartTotal(0);
+  const handleFinalizePurchase = async () => {
+    const token = localStorage.getItem('token');
+    
+    try {
+      const response = await axios.post('http://localhost:5000/payment/checkout', {
+        total: cartTotal,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Compra finalizada!', response.data.orderId);
+      setSelectedProducts([]);
+      setCartTotal(0);
+    } catch (error) {
+      console.error('Erro ao finalizar compra', error);
+    }
   };
+  
 
   return (
     <Router>
@@ -103,7 +118,9 @@ function App() {
             <Route path="/confirmation" element={<ConfirmationPage />} />
             <Route path="/products/:id" element={<ProductDetailsPage
               addProductToCart={addProductToCart}
-              products={products} />} />
+              products={products} />} 
+            />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         <Footer />

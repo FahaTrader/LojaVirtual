@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { faBars, faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSearch, faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
@@ -31,6 +31,9 @@ export default function Navbar({ setShowSidebarCart, selectedProducts, setSearch
             <FontAwesomeIcon icon={faShoppingCart} />
             <div className="products-count">{selectedProducts.length}</div>
           </button>
+          <Link to="/login" className="login-button">
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
           <button className="menu-button"
             onClick={() => setShow(!show)}
           >
