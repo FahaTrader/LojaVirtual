@@ -912,4 +912,8 @@ hr{
       height: 75vh;
       margin-inline: auto;
     }
+
+    .container-login{
+      width: 250px;
+    }
 }
