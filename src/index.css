@@ -908,7 +908,7 @@ hr{
 
 @media (max-width: 800px){
     .login-container{
-      max-width: 280px;
+      max-width: 250px;
       height: 75vh;
       margin-inline: auto;
     }
