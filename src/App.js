@@ -10,7 +10,6 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
 import axios from "axios";
 
 function App() {
@@ -128,7 +127,6 @@ function App() {
               products={products} />} 
             />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </main>
         <Footer />
