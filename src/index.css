@@ -906,14 +906,14 @@ hr{
   border-bottom: 1px solid #ccc;
 }
 
-@media (max-width: 800px){
-    .login-container{
-      max-width: 250px;
-      height: 75vh;
-      margin-inline: auto;
-    }
+@media (max-width: 430px){
+  .login-container{
+    max-width: 350px;
+    height: 70vh;
+    margin-inline: auto;
+  }
 
-    .container-login{
-      width: 250px;
-    }
+  .container-login{
+    width: 250px;
+  }
 }
