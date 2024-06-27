@@ -21,8 +21,10 @@ const ReviewPage = ({ selectedProducts, cartTotal, handleFinalizePurchase }) => 
           selectedProducts.map(product => (
             <ProductItem key={product.id}>
               <img className='img-review' src={product.image} alt={product.name} />
-              <span>{product.name}</span>
-              <span>R$ {product.price.toFixed(2)}</span>
+              <div className='desc-review'>
+                <span className='title-review'>{product.name}</span>
+                <span>R$ {product.price.toFixed(2)}</span>
+              </div>
             </ProductItem>
           ))
         )}

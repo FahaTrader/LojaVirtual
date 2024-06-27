@@ -1,19 +1,31 @@
 const express = require('express');
-const router = express.Router();
-const { Order } = require('../models/Order');
-const authenticateToken = require('../middleware/authMiddleware');
-const { v4: uuidv4 } = require('uuid');
+const jwt = require('jsonwebtoken');
+const Order = require('../models/Order');
+const User = require('../models/User');
 
-// Finalizar Compra
-router.post('/checkout', authenticateToken, async (req, res) => {
+const router = express.Router();
+
+const authenticate = (req, res, next) => {
+  const token = req.header('Authorization');
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.userId = decoded.id;
+    next();
+  } catch (error) {
+    res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+router.post('/checkout', authenticate, async (req, res) => {
   const { total } = req.body;
 
   try {
-    const orderId = uuidv4();
-    await Order.create({ userId: req.user.id, total, orderId });
-    res.status(201).json({ message: 'Order placed successfully', orderId });
+    const newOrder = await Order.create({ total, userId: req.userId });
+    res.status(201).json({ orderId: newOrder.id });
   } catch (error) {
-    res.status(500).json({ message: 'Failed to place order', error });
+    res.status(500).json({ error: 'Something went wrong' });
   }
 });
 

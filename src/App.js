@@ -10,6 +10,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 import axios from "axios";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   const [cartTotal, setCartTotal] = useState(0);
   const [showconfirmationMessage, setConfirmationMessage] = useState('')
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const addToCartTotal = (value) => setCartTotal(cartTotal + value);
 
@@ -70,7 +72,12 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar selectedProducts={selectedProducts} setShowSidebarCart={setShowSidebarCart} setSearchQuery={setSearchQuery} />
+        <Navbar 
+          selectedProducts={selectedProducts} 
+          setShowSidebarCart={setShowSidebarCart} 
+          setSearchQuery={setSearchQuery} 
+          isLoggedIn={isLoggedIn}
+        />
         <SidebarCart
           addToCartTotal={addToCartTotal}
           removeProductFromCart={removeProductFromCart}
@@ -121,6 +128,7 @@ function App() {
               products={products} />} 
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </main>
         <Footer />

@@ -3,11 +3,23 @@ import { faBars, faSearch, faShoppingCart, faUser } from "@fortawesome/free-soli
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ setShowSidebarCart, selectedProducts, setSearchQuery  }) {
+export default function Navbar({ setShowSidebarCart, selectedProducts, setSearchQuery, isLoggedIn }) {
   const [show, setShow] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const renderLoginLink = () => {
+    if (isLoggedIn) {
+      return <Link to="/profile" className="login-button">
+        <FontAwesomeIcon icon={faUser} />
+      </Link>;
+    } else {
+      return <Link to="/login" className="login-button">
+        <FontAwesomeIcon icon={faUser} />
+      </Link>;
+    }
   };
 
   return (
@@ -31,9 +43,7 @@ export default function Navbar({ setShowSidebarCart, selectedProducts, setSearch
             <FontAwesomeIcon icon={faShoppingCart} />
             <div className="products-count">{selectedProducts.length}</div>
           </button>
-          <Link to="/login" className="login-button">
-            <FontAwesomeIcon icon={faUser} />
-          </Link>
+          {renderLoginLink()}
           <button className="menu-button"
             onClick={() => setShow(!show)}
           >

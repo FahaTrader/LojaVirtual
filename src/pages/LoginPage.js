@@ -13,9 +13,9 @@ function LoginPage() {
         password,
       });
       localStorage.setItem('token', response.data.token);
-      setMessage('Login successful');
+      setMessage('Logado com sucesso');
     } catch (error) {
-      setMessage('Login failed');
+      setMessage('Falha ao Logar');
     }
   };
 
@@ -25,9 +25,9 @@ function LoginPage() {
         username,
         password,
       });
-      setMessage('Registration successful');
+      setMessage('Registrado com sucesso');
     } catch (error) {
-      setMessage('Registration failed');
+      setMessage('Falha ao registrar');
     }
   };
 

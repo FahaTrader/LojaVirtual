@@ -70,7 +70,6 @@ export const ReviewSection = styled.div`
 
 export const ProductItem = styled.div`
   display: flex;
-  justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 

@@ -775,8 +775,20 @@ hr{
   font-weight: bold;
 }
 
+.desc-review{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
 .img-review{
   width: 20%;
+}
+
+.title-review{
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .container-login{
@@ -855,4 +867,49 @@ hr{
   padding: 20px;
   background-color: #f4f4f9;
   min-height: 85vh;
+}
+
+.profile-page {
+  padding: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile-info input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+.orders {
+  margin-top: 20px;
+}
+
+.orders ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.orders li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 800px){
+    .login-container{
+      max-width: 280px;
+      height: 75vh;
+      margin-inline: auto;
+    }
 }
