@@ -1,28 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function LoginPage() {
-  const [username, setUsername] = useState('');
+function LoginPage({ setIsLoggedIn }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/profile');
+    }
+  }, [navigate]);
 
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5000/auth/login', {
-        username,
+        email,
         password,
       });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId); // Salva o userId para uso futuro
+      setIsLoggedIn(true);
       setMessage('Logado com sucesso');
+      navigate('/profile'); // Navega para a página de perfil
     } catch (error) {
       setMessage('Falha ao Logar');
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove o token do localStorage
+    setIsLoggedIn(false);
+    navigate('/login'); // Redireciona para a página de login após logout
+  };
+
   const handleRegister = async () => {
     try {
       await axios.post('http://localhost:5000/auth/register', {
-        username,
+        name,
+        email,
         password,
       });
       setMessage('Registrado com sucesso');
@@ -37,9 +57,15 @@ function LoginPage() {
         <h2>Login</h2>
         <input
           type="text"
-          placeholder="Nome de Usuário"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
@@ -52,6 +78,7 @@ function LoginPage() {
           <button className='btn-register' onClick={handleRegister}>Register</button>
         </div>
         {message && <p>{message}</p>}
+        <button className='logout' onClick={handleLogout}></button>
       </div>
     </div>
   );

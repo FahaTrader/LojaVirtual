@@ -800,7 +800,7 @@ hr{
 
 .login-container {
   max-width: 400px;
-  height: 50vh;
+  height: 53vh;
   margin: 0 auto;
   padding: 1rem 2rem;
   border: 1px solid #ccc;
@@ -918,4 +918,20 @@ hr{
     margin-inline: auto;
     min-height: 60vh;
   }
+}
+
+.container-profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+}
+
+.logout{
+  display: none;
+}
+
+.img-profile{
+  width: 180px;
+  border-radius: 50%;
 }
