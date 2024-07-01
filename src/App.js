@@ -10,8 +10,6 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
-import PurchaseHistoryPage from "./pages/PurchaseHistoryPage";
 import axios from "axios";
 
 function App() {
@@ -54,7 +52,7 @@ function App() {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.post('http://localhost:5000/payment/checkout', {
+      const response = await axios.post('http://localhost:5001/payment/checkout', {
         total: cartTotal,
       }, {
         headers: {
@@ -129,8 +127,6 @@ function App() {
               products={products} />} 
             />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
           </Routes>
         </main>
         <Footer />
