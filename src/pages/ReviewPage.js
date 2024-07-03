@@ -1,4 +1,3 @@
-// src/pages/ReviewPage.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Title, ReviewSection, ProductItem, Button } from '../styles';
@@ -6,9 +5,14 @@ import { Container, Title, ReviewSection, ProductItem, Button } from '../styles'
 const ReviewPage = ({ selectedProducts, cartTotal, handleFinalizePurchase }) => {
   const navigate = useNavigate();
 
-  const finalizePurchase = () => {
-    handleFinalizePurchase();
-    navigate('/confirmation');
+  const finalizePurchase = async () => {
+    try {
+      await handleFinalizePurchase(); // Chama a função que finaliza a compra
+      navigate('/confirmation'); // Redireciona para a página de confirmação após finalizar
+    } catch (error) {
+      console.error('Erro ao finalizar compra:', error);
+      // Tratar erros de finalização de compra, se necessário
+    }
   };
 
   return (

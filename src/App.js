@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate  } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
@@ -10,6 +10,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 import axios from "axios";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [showconfirmationMessage, setConfirmationMessage] = useState('')
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [formData, setFormData] = useState('');
 
   const addToCartTotal = (value) => setCartTotal(cartTotal + value);
 
@@ -49,25 +51,22 @@ function App() {
   }
 
   const handleFinalizePurchase = async () => {
-    const token = localStorage.getItem('token');
-    
     try {
-      const response = await axios.post('http://localhost:5001/payment/checkout', {
-        total: cartTotal,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await axios.post('http://localhost:5003/finalize-purchase', {
+        userId: 11,
+        products: selectedProducts,
+        totalPrice: cartTotal,
+        shippingInfo: formData,
       });
-      console.log('Compra finalizada!', response.data.orderId);
-      setSelectedProducts([]);
-      setCartTotal(0);
+  
+      console.log(response.data);
     } catch (error) {
-      console.error('Erro ao finalizar compra', error);
+      console.error('Erro ao finalizar compra:', error);
+      // Aqui você pode tratar o erro de forma adequada, como exibir uma mensagem de erro para o usuário
     }
   };
-  
 
+  
   return (
     <Router>
       <div className="App">
@@ -127,6 +126,7 @@ function App() {
               products={products} />} 
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/profile" element={<ProfilePage user={{ name: 'Nome do Usuário', email: 'email@exemplo.com', photo: 'url-da-foto' }} />} />
           </Routes>
         </main>
         <Footer />

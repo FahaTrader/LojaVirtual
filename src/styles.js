@@ -78,3 +78,6 @@ export const ProductItem = styled.div`
   }
 `;
 
+export const PurchaseSection = styled.div``;
+
+export const PurchaseItem = styled.div``;
