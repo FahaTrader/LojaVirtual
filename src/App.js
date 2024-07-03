@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate  } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
@@ -21,7 +21,6 @@ function App() {
   const [showconfirmationMessage, setConfirmationMessage] = useState('')
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [formData, setFormData] = useState('');
 
   const addToCartTotal = (value) => setCartTotal(cartTotal + value);
 
@@ -50,32 +49,39 @@ function App() {
     }, 3000);
   }
 
-  // Function to finalize purchase
   const handleFinalizePurchase = async () => {
-    const token = localStorage.getItem('token');
-    const products = selectedProducts.map(product => ({
-      productName: product.name,
-      price: product.price
-    }));
-
     try {
-      const response = await axios.post(
-        'http://localhost:5003/finalize-purchase',
-        { products },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      return response.data;
-      console.log(response.data);
+      // Lógica para enviar os dados da compra para o backend
+      const response = await ('http://localhost:5003/finalize-purchase', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6IlNyLiBBZ3VpYXIiLCJpYXQiOjE3MTk5NDg3MDksImV4cCI6MTcxOTk1MjMwOX0.ZViO3_9Is8HBEVDWQLXZOUEu7zyu-Z8vXS-lk3lM7Q8' // Inclua o token de autenticação JWT aqui
+        },
+        body: JSON.stringify({
+          userId: 11, // Substitua com o ID do usuário logado
+          products: selectedProducts,
+          totalPrice: cartTotal,
+          shippingInfo: {
+            // Informações de envio, se necessário
+          }
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao finalizar compra');
+      }
+
+      // Limpar estado de produtos selecionados ou redirecionar para página de confirmação
+      setSelectedProducts([]);
+      setCartTotal(0);
     } catch (error) {
-      console.error('Error finalizing purchase:', error);
-      throw error;
+      console.error('Erro ao finalizar compra:', error);
+      // Tratar erros de finalização de compra, se necessário
     }
   };
-    
+
+  
   return (
     <Router>
       <div className="App">
