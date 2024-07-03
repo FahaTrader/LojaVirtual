@@ -9,7 +9,7 @@ const multer = require('multer');
 const path = require('path');
 
 const app = express();
-const port = 5003;
+const port = process.env.PORT || 5003;
 const secretKey = process.env.SECRET_KEY;
 
 app.use(bodyParser.json());
@@ -29,11 +29,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'Loja',
-  password: '281217',
-  port: 5433,
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
 });
 
 // Função para gerar um token JWT
