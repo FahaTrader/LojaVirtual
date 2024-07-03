@@ -11,6 +11,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import axios from "axios";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -48,15 +49,26 @@ function App() {
     }, 3000);
   }
 
-  const handleFinalizePurchase = () => {
-    // Logic to finalize the purchase
-    console.log('Compra finalizada');
-    // Clear the cart or perform any other actions needed after purchase
-    setSelectedProducts([]);
-    setCartTotal(0);
+  const handleFinalizePurchase = async () => {
+    const token = localStorage.getItem('token');
+    
+    try {
+      const response = await axios.post('http://localhost:5001/payment/checkout', {
+        total: cartTotal,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Compra finalizada!', response.data.orderId);
+      setSelectedProducts([]);
+      setCartTotal(0);
+    } catch (error) {
+      console.error('Erro ao finalizar compra', error);
+    }
   };
-
   
+
   return (
     <Router>
       <div className="App">
