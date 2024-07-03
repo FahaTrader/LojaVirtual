@@ -9,7 +9,7 @@ const multer = require('multer');
 const path = require('path');
 
 const app = express();
-const port = 5003;
+const port = process.env.PORT || 5003;
 const secretKey = process.env.SECRET_KEY;
 
 app.use(bodyParser.json());
@@ -129,25 +129,6 @@ app.post('/upload-profile-picture', authenticateToken, upload.single('profile_pi
     res.json({ profile_picture: profilePicturePath });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao atualizar imagem de perfil' });
-  }
-});
-
-// Rota para finalizar a compra e salvar o histórico
-app.post('/finalize-purchase', authenticateToken, async (req, res) => {
-  const { products, totalAmount } = req.body;
-
-  if (!products || products.length === 0) {
-    return res.status(400).json({ message: 'Nenhum produto selecionado' });
-  }
-
-  try {
-    const result = await pool.query(
-      'INSERT INTO purchase_history (user_id, products, total_amount) VALUES ($1, $2, $3) RETURNING *',
-      [req.user.userId, JSON.stringify(products), totalAmount]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
 });
 

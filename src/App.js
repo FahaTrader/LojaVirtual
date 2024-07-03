@@ -50,23 +50,32 @@ function App() {
     }, 3000);
   }
 
+  // Function to finalize purchase
   const handleFinalizePurchase = async () => {
+    const token = localStorage.getItem('token');
+    const products = selectedProducts.map(product => ({
+      productName: product.name,
+      price: product.price
+    }));
+
     try {
-      const response = await axios.post('http://localhost:5003/finalize-purchase', {
-        userId: 11,
-        products: selectedProducts,
-        totalPrice: cartTotal,
-        shippingInfo: formData,
-      });
-  
+      const response = await axios.post(
+        'http://localhost:5003/finalize-purchase',
+        { products },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
       console.log(response.data);
     } catch (error) {
-      console.error('Erro ao finalizar compra:', error);
-      // Aqui você pode tratar o erro de forma adequada, como exibir uma mensagem de erro para o usuário
+      console.error('Error finalizing purchase:', error);
+      throw error;
     }
   };
-
-  
+    
   return (
     <Router>
       <div className="App">
