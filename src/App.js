@@ -11,7 +11,6 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ReviewPage from "./pages/ReviewPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import axios from "axios";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -49,36 +48,12 @@ function App() {
     }, 3000);
   }
 
-  const handleFinalizePurchase = async () => {
-    try {
-      // Lógica para enviar os dados da compra para o backend
-      const response = await ('http://localhost:5003/finalize-purchase', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6IlNyLiBBZ3VpYXIiLCJpYXQiOjE3MTk5NDg3MDksImV4cCI6MTcxOTk1MjMwOX0.ZViO3_9Is8HBEVDWQLXZOUEu7zyu-Z8vXS-lk3lM7Q8' // Inclua o token de autenticação JWT aqui
-        },
-        body: JSON.stringify({
-          userId: 11, // Substitua com o ID do usuário logado
-          products: selectedProducts,
-          totalPrice: cartTotal,
-          shippingInfo: {
-            // Informações de envio, se necessário
-          }
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Erro ao finalizar compra');
-      }
-
-      // Limpar estado de produtos selecionados ou redirecionar para página de confirmação
-      setSelectedProducts([]);
-      setCartTotal(0);
-    } catch (error) {
-      console.error('Erro ao finalizar compra:', error);
-      // Tratar erros de finalização de compra, se necessário
-    }
+  const handleFinalizePurchase = () => {
+    // Logic to finalize the purchase
+    console.log('Compra finalizada');
+    // Clear the cart or perform any other actions needed after purchase
+    setSelectedProducts([]);
+    setCartTotal(0);
   };
 
   

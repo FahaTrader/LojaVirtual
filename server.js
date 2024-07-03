@@ -9,7 +9,7 @@ const multer = require('multer');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 5003;
+const port = 5003;
 const secretKey = process.env.SECRET_KEY;
 
 app.use(bodyParser.json());
