@@ -17,6 +17,11 @@ app.use(cors());
 // Servir arquivos de upload
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
 // Configurar o multer para armazenar imagens
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -65,6 +70,7 @@ app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
+    console.log('Campos obrigatórios ausentes');
     return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
   }
 
@@ -75,17 +81,19 @@ app.post('/register', async (req, res) => {
       'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
       [username, email, hashedPassword]
     );
+    console.log('Usuário registrado:', result.rows[0]);
     res.status(201).json(result.rows[0]);
   } catch (error) {
+    console.error('Erro ao registrar usuário:', error.message);
     res.status(500).json({ error: error.message });
   }
 });
 
-// Rota de login
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
+    console.log('Campos obrigatórios ausentes');
     return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
   }
 
@@ -95,11 +103,14 @@ app.post('/login', async (req, res) => {
 
     if (user && await bcrypt.compare(password, user.password)) {
       const token = generateToken(user);
+      console.log('Usuário logado:', user);
       res.json({ token });
     } else {
+      console.log('Credenciais inválidas');
       res.status(401).json({ message: 'Credenciais inválidas' });
     }
   } catch (error) {
+    console.error('Erro ao fazer login:', error.message);
     res.status(500).json({ error: error.message });
   }
 });
